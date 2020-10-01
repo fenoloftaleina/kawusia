@@ -5,13 +5,18 @@
     [clojure.string :as cstr]))
 
 (defn handler [request]
-  (-> "https://docs.google.com/spreadsheets/d/1QQlcTe7Ssq3Delx2HpBjKX-LgQYuMdbYG_VD7asAe98/gviz/tq?tqx=out:csv&sheet=kawusia"
-      http/get
-      :body
-      (cstr/replace #"\"" "")
-      (cstr/split #"\n")
-      rand-nth
-      (http/get {:as :byte-array})))
+  (let [img-url
+        (-> "https://docs.google.com/spreadsheets/d/1QQlcTe7Ssq3Delx2HpBjKX-LgQYuMdbYG_VD7asAe98/gviz/tq?tqx=out:csv&sheet=kawusia"
+            http/get
+            :body
+            (cstr/replace #"\"" "")
+            (cstr/split #"\n")
+            rand-nth)]
+    (try
+      (http/get img-url {:as :byte-array})
+      (catch Exception e
+        {:status 200
+         :body (str "fucked img url " img-url)}))))
 
 (defn -main [& [port]]
   (jetty/run-jetty #'handler {:port (or port
