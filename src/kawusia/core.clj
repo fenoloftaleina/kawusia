@@ -13,7 +13,9 @@
       (http/get {:as :byte-array})))
 
 (defn -main [& [port]]
-  (jetty/run-jetty #'handler {:port (or port 80) :join? false}))
+  (jetty/run-jetty #'handler {:port (or port
+                                        (Integer/parseInt (System/getenv "PORT")))
+                              :join? false}))
 
 
 (comment
