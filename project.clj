@@ -7,4 +7,5 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring "1.8.1"]
                  [clj-http "3.10.3"]]
+  :main kawusia.core
   :repl-options {:init-ns kawusia.core})
