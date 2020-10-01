@@ -5,10 +5,11 @@
     [clojure.string :as cstr]))
 
 (defn handler [request]
-  (-> "https://pastebin.com/raw/9SFTX93k"
+  (-> "https://docs.google.com/spreadsheets/d/1QQlcTe7Ssq3Delx2HpBjKX-LgQYuMdbYG_VD7asAe98/gviz/tq?tqx=out:csv&sheet=kawusia"
       http/get
       :body
-      (cstr/split #"\r\n")
+      (cstr/replace #"\"" "")
+      (cstr/split #"\n")
       rand-nth
       (http/get {:as :byte-array})))
 
