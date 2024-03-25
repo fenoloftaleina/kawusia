@@ -6,4 +6,5 @@ https://docs.google.com/spreadsheets/d/1QQlcTe7Ssq3Delx2HpBjKX-LgQYuMdbYG_VD7asA
 
 for a slack bot sort of thing on:
 
-https://kawusia.herokuapp.com
+~~https://kawusia.herokuapp.com~~
+UPDATE: the heroku instance isn't there anymore.
